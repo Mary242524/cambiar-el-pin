@@ -1,7 +1,9 @@
 input.onButtonPressed(Button.A, function () {
     if (SPRITE.get(LedSpriteProperty.X) == 2) {
         puntos += 1
+        basic.showIcon(IconNames.Yes)
     } else {
+        puntos += -1
         basic.showLeds(`
             # . . . #
             . # . # .
@@ -9,8 +11,6 @@ input.onButtonPressed(Button.A, function () {
             . # . # .
             # . . . #
             `)
-        puntos += -1
-        basic.showNumber(puntos)
     }
 })
 input.onButtonPressed(Button.AB, function () {
@@ -26,10 +26,10 @@ basic.showNumber(1)
 SPRITE = game.createSprite(2, 2)
 puntos = 0
 basic.forever(function () {
-    SPRITE.move(1)
-    basic.pause(100)
-    SPRITE.ifOnEdgeBounce()
-    if (puntos < 0) {
+    if (puntos < -1) {
         basic.showIcon(IconNames.Sad)
     }
+    SPRITE.move(1)
+    basic.pause(200)
+    SPRITE.ifOnEdgeBounce()
 })
